@@ -22,9 +22,9 @@ const DATABASE_SCHEMA = [
         message: "Tabela avaliações criada",
         query: `CREATE TABLE IF NOT EXISTS "AVALIACOES" (
             "id" INTEGER PRIMARY KEY AUTOINCREMENT, 
-            "materia" varchar(80),
+            "materia" varchar(80) NOT NULL,
             "data" text,
-            "nota_maxima" real
+            "nota_maxima" real NOT NULL
         )`,
     },
     {
@@ -32,9 +32,15 @@ const DATABASE_SCHEMA = [
         message: "Tabela boletim criada",
         query: `CREATE TABLE IF NOT EXISTS "BOLETIM" (
             "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-            "id_aluno" int,
-            "id_prova" int,
-            "nota_recebida" real
+            "id_aluno" int NOT NULL,
+            "id_prova" int NOT NULL,
+            "nota_recebida" real NOT NULL,
+            FOREIGN KEY(id_aluno) REFERENCES ALUNOS(id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE,
+            FOREIGN KEY(id_prova) REFERENCES AVALIACOES(id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
         )`,
     }
 ]
