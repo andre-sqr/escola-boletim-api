@@ -1,3 +1,5 @@
+import alunos from "./alunosRouter.js"
+
 const routes = (app)=> {
     app.route('/').get((req, res)=> {
         res.status(200).send({
@@ -6,6 +8,8 @@ const routes = (app)=> {
             autor: "André Siqueira"
         })
     })
+
+    app.use(alunos)
 }
 
 export default routes;
