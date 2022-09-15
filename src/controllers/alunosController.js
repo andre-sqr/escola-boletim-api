@@ -22,6 +22,30 @@ const alunosController = {
                 "erro": true
             })
         }
+    },
+
+    buscarAlunosPorID: async (req, res)=> {
+        const id = req.params.id
+        try {
+            const answer = await alunosModel.buscarAlunosPorID(id)
+
+            if (answer.status === 200) {
+                res.status(answer.status).json({
+                    "aluno": answer.dados,
+                    "erro": false
+                })
+            } else {
+                res.status(answer.status).json({
+                    "mensagem": answer.mensagem,
+                    "erro": true
+                })
+            }
+        } catch (error) {
+            res.status(500).json({
+                "mensagem": error.message,
+                "erro": true
+            })
+        }
     }
 }
 
