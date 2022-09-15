@@ -19,7 +19,23 @@ const alunosModel = {
 
     buscarAlunosPorID: async (id)=> {
         try {
-            const dados = await alunoDAO.buscarAlunoPorID(id)
+            const dados = await alunoDAO.buscarAlunosPorID(id)
+            return {
+                dados: dados,
+                status: 200
+            }
+        } catch (error) {
+            return {
+                mensagem: error.message,
+                status: 400
+            }
+        }
+    },
+
+    buscarAlunosPorNome: async (nome)=> {
+        try {
+            const dados = await alunoDAO.buscarAlunosPorNome(nome)
+            console.log(dados);
             return {
                 dados: dados,
                 status: 200

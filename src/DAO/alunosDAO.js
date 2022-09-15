@@ -17,7 +17,7 @@ const alunoDAO = {
         })
     },
 
-    buscarAlunoPorID: (id)=> {
+    buscarAlunosPorID: (id)=> {
         const PEGA_ALUNO_ID = `
         SELECT * FROM ALUNOS
         WHERE id = ?
@@ -28,6 +28,22 @@ const alunoDAO = {
                     reject(error)
                 } else {
                     resolve(row)
+                }
+            })
+        })
+    },
+
+    buscarAlunosPorNome: (nome)=> {
+        const PEGA_ALUNO_NOME = `
+        SELECT * FROM ALUNOS
+        WHERE nome LIKE ?
+        `
+        return new Promise((resolve, reject)=> {
+            db.all(PEGA_ALUNO_NOME, nome, (error, row)=> {
+                if (error) {
+                    reject (error)
+                } else {
+                    resolve (row)
                 }
             })
         })
