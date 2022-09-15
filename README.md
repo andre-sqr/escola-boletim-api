@@ -66,3 +66,75 @@ Se for preciso reinicializar o banco de dados, lembre-se de excluir o arquivo `e
 ```
 npm run db
 ```
+
+# Rotas
+
+### Alunos
+
+- **GET /alunos**
+
+_Confere os alunos registrados no banco de dados_
+
+Esquema de requisição:
+
+> http://localhost:3000/alunos
+
+Esquema de reposta:
+
+```json
+{
+	"alunos": [
+		{
+			"id": 1,
+			"nome": "João Porsche",
+			"turma": "2020A"
+		},
+		{
+			"id": 2,
+			"nome": "Bárbara Fusca",
+			"turma": "2020B"
+		},
+		{
+			"id": 3,
+			"nome": "Marta Ferrari",
+			"turma": "2022A"
+		},
+		{
+			"id": 4,
+			"nome": "Pedro Celta",
+			"turma": "2018A"
+		},
+		{
+			"id": 5,
+			"nome": "Carina Celta",
+			"turma": "2022A"
+		}
+	],
+	"erro": false
+}
+```
+
+---
+
+- **GET /alunos/id/:id**
+
+_Busca um aluno no banco de dados a partir de um ID_
+
+Esquema de requisição:
+
+> http://localhost:300/alunos/id/1
+
+Esquema de resposta:
+
+```json
+{
+	"aluno": [
+		{
+			"id": 1,
+			"nome": "João Porsche",
+			"turma": "2020A"
+		}
+	],
+	"erro": false
+}
+```
