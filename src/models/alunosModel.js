@@ -21,9 +21,16 @@ const alunosModel = {
     buscarAlunosPorID: async (id)=> {
         try {
             const dados = await alunoDAO.buscarAlunosPorID(id)
-            return {
-                dados: dados,
-                status: 200
+            if (dados) {
+                return {
+                    dados: dados,
+                    status: 200
+                }
+            } else {
+                return {
+                    mensagem: `Aluno de id ${id} não encontrado`,
+                    status: 404
+                }
             }
         } catch (error) {
             return {
@@ -57,6 +64,21 @@ const alunosModel = {
                 mensagem: "Aluno inserido com sucesso",
                 dados: dados,
                 status: 201
+            }
+        } catch (error) {
+            return {
+                mensagem: error.message,
+                status: 400
+            }
+        }
+    },
+
+    deletarAlunos: async (id)=> {
+        try {
+            const msg = await alunoDAO.deletarAlunos(id)
+            return {
+                mensagem: msg,
+                status: 200
             }
         } catch (error) {
             return {

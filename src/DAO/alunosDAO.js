@@ -63,6 +63,22 @@ const alunoDAO = {
                 }
             })
         })
+    },
+
+    deletarAlunos: (id)=> {
+        const DELETA_ALUNO = `
+        DELETE FROM ALUNOS WHERE id = ?
+        `
+
+        return new Promise((resolve, reject)=> {
+            db.all(DELETA_ALUNO, id, (error)=> {
+                if (error) {
+                    reject (error)
+                } else {
+                    resolve (`Aluno de id ${id} deletado com sucesso`)
+                }
+            })
+        })
     }
 }
 

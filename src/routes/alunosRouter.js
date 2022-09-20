@@ -8,6 +8,7 @@ router
     .get('/alunos/id/:id', alunosController.buscarAlunosPorID)
     .get('/alunos/nome/:nome', alunosController.buscarAlunosPorNome)
     .post('/alunos', alunosController.criarAlunos)
+    .delete('/alunos/id/:id', alunosController.deletarAlunos)
 
 
 export default router;

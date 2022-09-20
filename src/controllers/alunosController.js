@@ -89,6 +89,31 @@ const alunosController = {
                 "erro": true
             })
         }
+    },
+
+    deletarAlunos: async (req, res)=> {
+        const id = req.params.id
+        try {
+            const {status, mensagem} = await alunosModel.buscarAlunosPorID(id)
+            if (status === 404) {
+                res.status(status).json({
+                    "mensagem": mensagem,
+                    "erro": true
+                })
+            } else {
+                const answer = await alunosModel.deletarAlunos(id)
+
+                res.status(answer.status).json({
+                    "mensagem": answer.mensagem,
+                    "erro": false
+                })
+            }
+        } catch (error) {
+            res.status(500).json({
+                "mensagem": error.message,
+                "erro": true
+            })
+        }
     }
 }
 
