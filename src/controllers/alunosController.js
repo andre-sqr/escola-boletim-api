@@ -71,6 +71,24 @@ const alunosController = {
                 "erro": true
             })
         }
+    },
+
+    criarAlunos: async (req, res)=> {
+        const body = req.body
+        try {
+            const answer = await alunosModel.criarAlunos(body)
+
+            res.status(answer.status).json({
+                "mensagem": answer.mensagem,
+                "aluno": answer.dados,
+                "erro": false
+            })
+        } catch (error) {
+            res.status(500).json({
+                "mensagem": error.message,
+                "erro": true
+            })
+        }
     }
 }
 

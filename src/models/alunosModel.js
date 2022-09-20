@@ -1,4 +1,5 @@
 import alunoDAO from "../DAO/alunosDAO.js";
+import { criaAluno } from "../services/alunos/aluno.js";
 
 const alunosModel = {
 
@@ -39,6 +40,23 @@ const alunosModel = {
             return {
                 dados: dados,
                 status: 200
+            }
+        } catch (error) {
+            return {
+                mensagem: error.message,
+                status: 400
+            }
+        }
+    },
+
+    criarAlunos: async (aluno)=> {
+        try {
+            const novoAluno = criaAluno(aluno)
+            const dados = await alunoDAO.criarAlunos(novoAluno)
+            return {
+                mensagem: "Aluno inserido com sucesso",
+                dados: dados,
+                status: 201
             }
         } catch (error) {
             return {

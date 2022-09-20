@@ -47,6 +47,22 @@ const alunoDAO = {
                 }
             })
         })
+    },
+
+    criarAlunos: (aluno)=> {
+        const CRIA_ALUNO = `
+        INSERT INTO ALUNOS (nome, turma)
+        VALUES (?, ?)`
+
+        return new Promise((resolve, reject)=> {
+            db.all(CRIA_ALUNO, aluno.nome, aluno.turma, (error)=> {
+                if (error) {
+                    reject (error)
+                } else {
+                    resolve (aluno)
+                }
+            })
+        })
     }
 }
 
