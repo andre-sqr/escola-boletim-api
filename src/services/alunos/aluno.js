@@ -1,18 +1,24 @@
-import { campoNaoVazio } from "../logicaGeral.js";
+import { maiorQueUmDigito } from "../logicaGeral.js";
 
 const validaCampo = (campo)=> {
-    if (campoNaoVazio(campo)) {
+    if (maiorQueUmDigito(campo)) {
         return campo
     } else {
-        throw new Error('Os campos não podem estar vazios')
+        throw new Error('Insira um campo válido')
     }
 }
 
 export const validaAluno = (dados)=> {
-    if (dados.nome) 
+    if (dados.nome) {
         validaCampo(dados.nome)
-    if (dados.turma)
+    } else {
+        throw new Error('Os campos não podem estar vazios')
+    }
+    if (dados.turma) {
         validaCampo(dados.turma)
+    } else {
+        throw new Error('Os campos não podem estar vazios')
+    }
 }
 
 export const criaAluno = (dados)=> {

@@ -1,3 +1,4 @@
-export const campoNaoVazio = (info)=> {
-    if (info.length > 0) return info
+export const maiorQueUmDigito = (info)=> {
+    return info?.length > 1
 }
+
